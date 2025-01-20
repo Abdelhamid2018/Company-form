@@ -1,0 +1,57 @@
+<div class="video">
+  <video style="border-radius:10px; width:100%;min-width:400px; height: 400px; object-fit: cover; object-position: top;" width="100%"  class="responsive-video" id="myVideo-generative-video-options" muted controls>
+    <source src="./media/generative-video-options.mp4" type="video/mp4">
+    <source src="./media/generative-video-options.mp4" type="video/webm">
+    Your browser does not support the video tag.
+  </video>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Scroll to the top immediately when the page loads
+    $(window).scrollTop(0);
+
+    var avatarAudio = $('#myVideo-generative-video-options')[0]; // Get the video element
+    avatarAudio.muted = false;  // Unmute the video
+    avatarAudio.play();         // Play the video
+
+    // Unmute the video when the button is clicked
+    $('#unmuteButton').click(function() {
+      var avatarAudio = $('#myVideo-generative-video-options')[0]; // Get the video element
+      avatarAudio.muted = false;  // Unmute the video
+      avatarAudio.play();         // Play the video
+    });
+  });
+</script>
+
+<!-- Form Content -->
+<div class="view-container">
+  <h2>LLC Type</h2>
+  <p>Please select the LLC type.</p>
+  <hr/>
+
+  <div class="vertical-options">
+    <div class="option" data-value="single-us">
+      <i class="bi bi-person"></i>
+      <span>Single-Member US citizen / resident</span>
+    </div>
+    <div class="option" data-value="single-non-us">
+      <i class="bi bi-person-x"></i>
+      <span>Single-Member NON-US citizen / resident</span>
+    </div>
+    <div class="option" data-value="multi-member">
+      <i class="bi bi-people"></i>
+      <span>Multi-Member</span>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button class="btn btn-primary" id="previous-btn">
+      <i class="bi bi-arrow-left"></i> Previous
+    </button>
+    <button class="btn btn-primary" id="next-btn">
+      Next <i class="bi bi-arrow-right"></i>
+    </button>
+  </div>
+</div>

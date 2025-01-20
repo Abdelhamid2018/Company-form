@@ -1,0 +1,45 @@
+<div class="video">
+  <video style="border-radius:10px; width:100%;min-width:400px; height: 400px; object-fit: cover; object-position: top;" width="100%"  class="responsive-video" id="myVideo-submitted" muted controls>
+      <source src="./media/Submitted.mp4" type="video/mp4">
+      <source src="./media/Submitted.mp4" type="video/webm">
+      Your browser does not support the video tag.
+  </video>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  $(document).ready(function() {
+      // Scroll to the top immediately when the page loads
+      $(window).scrollTop(0);
+
+      var avatarAudio = $('#myVideo-submitted')[0]; // Get the video element
+      avatarAudio.muted = false;  // Unmute the video
+      avatarAudio.play();         // Play the video
+
+      // Unmute the video when the button is clicked
+      $('#unmuteButton').click(function() {
+      var avatarAudio = $('#myVideo-submitted')[0]; // Get the video element
+      avatarAudio.muted = false;  // Unmute the video
+      avatarAudio.play();         // Play the video
+      });
+  });
+  </script>
+
+<!-- Form Content -->
+<div class="view-container container text-center">
+  <!-- Big Checkbox Icon in the Center -->
+  <div class="mb-4">
+    <i class="bi bi-check-circle" style="font-size: 100px; color: #28a745;"></i>
+  </div>
+
+  <!-- Title Below Icon -->
+  <h2>Your form has been submitted</h2>
+
+  <!-- Message Text -->
+  <p>Thank you for submitting all the required information.</p>
+  <p>We have sent you an email with details for confirmation.</p>
+  <p>Please check your inbox and confirm.</p>
+
+  <!-- Buttons or Additional Content (Optional) -->
+
+</div>
