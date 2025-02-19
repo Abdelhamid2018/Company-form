@@ -1,0 +1,73 @@
+<!-- Form Content -->
+<div class="container">
+  <h2 class="mt-3">Mortgage and Forwarding Address Information</h2>
+  <p>Please fill out the information below for the mortgage and forwarding address.</p>
+  <hr/>
+
+  <!-- Mortgage Information -->
+  <div class="mb-3">
+      <label class="form-label fw-bold">Mortgage Information <span class="text-danger">*</span></label>
+      <div>
+          <input type="radio" id="noMortgage" name="mortgageStatus" value="No Mortgage" onclick="hideMortgageDetails()">
+          <label for="noMortgage">Property DOES NOT have a mortgage</label><br>
+          <input type="radio" id="hasMortgage" name="mortgageStatus" value="Has Mortgage" onclick="showMortgageDetails()">
+          <label for="hasMortgage">Property HAS a mortgage/s</label>
+      </div>
+  </div>
+
+  <!-- Mortgage Details (Hidden by Default)
+  <div id="mortgageDetails" style="display: none;">
+      <h4>Mortgage Information</h4>
+      <div class="row">
+          <div class="col-md-6 mb-3">
+              <label for="mortgageLender" class="form-label fw-bold">Mortgage Lender</label>
+              <input type="text" class="form-control" id="mortgageLender" placeholder="Enter Mortgage Lender's Name">
+          </div>
+          <div class="col-md-6 mb-3">
+              <label for="mortgageBalance" class="form-label fw-bold">Mortgage Balance</label>
+              <input type="text" class="form-control" id="mortgageBalance" placeholder="Enter Mortgage Balance">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6 mb-3">
+              <label for="mortgageLoanNumber" class="form-label fw-bold">Mortgage Loan Number</label>
+              <input type="text" class="form-control" id="mortgageLoanNumber" placeholder="Enter Loan Number">
+          </div>
+          <div class="col-md-6 mb-3">
+              <label for="mortgagePayment" class="form-label fw-bold">Monthly Payment</label>
+              <input type="text" class="form-control" id="mortgagePayment" placeholder="Enter Monthly Payment">
+          </div>
+      </div>
+  </div> -->
+
+
+  <!-- Seller Forwarding Address -->
+  <div class="mb-3">
+      <label for="forwardingAddress" class="form-label fw-bold">Seller Forwarding Address</label>
+      <input type="text" class="form-control" id="forwardingAddress" placeholder="Enter Your Forwarding Address">
+  </div>
+
+  <!-- Buttons -->
+  <div class="d-flex justify-content-between my-3">
+      <button class="btn btn-primary" id="previous-btn">
+          <i class="bi bi-arrow-left"></i> Previous
+      </button>
+      <button class="btn btn-primary" id="next-btn">
+          Next <i class="bi bi-arrow-right"></i>
+      </button>
+  </div>
+</div>
+
+<script>
+/*
+function showMortgageDetails() {
+  document.getElementById('mortgageDetails').style.display = 'block';
+}
+
+function hideMortgageDetails() {
+  document.getElementById('mortgageDetails').style.display = 'none';
+}
+*/
+
+
+</script>

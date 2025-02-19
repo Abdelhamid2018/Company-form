@@ -1,0 +1,54 @@
+<!-- Form Content -->
+<div class="video">
+  <video style="width:100%; min-width:400px; height: auto; aspect-ratio: 1/1; object-fit: cover; object-position: top;" width="100%"  class="responsive-video"id="myVideo-property-address" muted controls>
+    <source src="./georgia-property-address.mp4" type="video/mp4">
+    <source src="./georgia-property-address.mp4" type="video/webm">
+    Your browser does not support the video tag.
+  </video>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Scroll to the top immediately when the page loads
+    $(window).scrollTop(0);
+
+    var avatarAudio = $('#myVideo-property-address')[0]; // Get the video element
+    avatarAudio.muted = false;  // Unmute the video
+    avatarAudio.play();         // Play the video
+
+    // Unmute the video when the button is clicked
+    $('#unmuteButton').click(function() {
+      var avatarAudio = $('#myVideo-property-address')[0]; // Get the video element
+      avatarAudio.muted = false;  // Unmute the video
+      avatarAudio.play();         // Play the video
+    });
+  });
+</script>
+
+<div class="view-container">
+  <h2>Property Address</h2>
+  <p>Please provide the full property address, including
+    street, city, state, and ZIP code.</p>
+  <hr/>
+
+  <div class="input-group">
+    <span class="input-group-text">
+        <i class="bi bi-house-door"></i>
+    </span>
+    <input type="text" class="form-control" placeholder="Please enter the Property address...">
+  </div>
+
+  <div class="button-container">
+    <button class="btn btn-primary" id="previous-btn">
+      <i class="bi bi-arrow-left"></i> Previous
+    </button>
+    <button class="btn btn-primary" id="next-btn">
+      Next <i class="bi bi-arrow-right"></i>
+    </button>
+  </div>
+</div>
+
+
+
+

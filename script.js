@@ -1,5 +1,90 @@
-const inputOnlyViews = ['seller-company-property-address', 'seller-company-information', 'seller-company-type-llc-multi-member-tax-id','seller-company-operating-agreement-upload','seller-company-type-llc-manager', 'seller-company-type-llc-single-us-tax-id', 'seller-company-type-llc-single-non-us-tax-id', 'seller-company-attorney-representation-details','seller-company-realtor-information-details','terms-and-conditions','seller-company-type-corporation-tax-id','seller-company-type-corporation-president','seller-company-type-corporation-vice-president','seller-company-owners'];
-const nonConditionalViews = ['seller-company-property-type','seller-company-property-use' ];
+const viewMappingBuyerCompany = {
+
+    "view1-buyer-company": "buyer-company-property-address",
+
+    "buyer-company-property-address": "buyer-company-property-type",
+
+    "buyer-company-property-type": "buyer-company-transaction-type",
+
+    "buyer-company-transaction-type": "buyer-company-information",
+
+    "buyer-company-information": "buyer-company-type",
+
+    "buyer-company-type-corporation": "buyer-company-type-corporation-tax-id",
+
+    "buyer-company-type-corporation-tax-id":
+      "buyer-company-type-corporation-president",
+
+      "buyer-company-type-corporation-president":
+      "buyer-company-type-corporation-vice-president",
+
+      "buyer-company-type-corporation-vice-president":
+      "buyer-company-operating-agreement",
+
+      "buyer-company-type-llc": "buyer-company-type-llc",
+    "buyer-company-type-llc-single-us": "buyer-company-type-llc-single-us-tax-id",
+
+    "buyer-company-type-llc-single-non-us":
+      "buyer-company-type-llc-single-non-us-tax-id",
+
+      "buyer-company-type-llc-single-non-us-tax-id":
+      "buyer-company-type-llc-manager",
+
+      "buyer-company-type-llc-single-us-tax-id": "buyer-company-type-llc-manager",
+
+      "buyer-company-type-llc-multi-member":
+      "buyer-company-type-llc-multi-member-tax-id",
+
+      "buyer-company-type-llc-multi-member-tax-id":
+      "buyer-company-type-llc-manager",
+
+      "buyer-company-type-llc-manager": "buyer-company-operating-agreement",
+
+      "buyer-company-operating-agreement-yes":
+      "buyer-company-operating-agreement-upload",
+
+      "buyer-company-operating-agreement-no": "buyer-company-owners",
+
+      "buyer-company-operating-agreement-upload": "buyer-company-owners",
+
+      "buyer-company-owners": "buyer-company-attorney-representation",
+
+      "buyer-company-attorney-representation-yes":
+      "buyer-company-attorney-representation-details",
+
+      "buyer-company-attorney-representation-details":
+      "buyer-company-realtor-information",
+
+    "buyer-company-attorney-representation-no":
+      "buyer-company-realtor-information",
+
+    "buyer-company-realtor-information-yes":
+      "buyer-company-realtor-information-details",
+
+    "buyer-company-realtor-information-details": "terms-and-conditions",
+
+    "buyer-company-realtor-information-no": "terms-and-conditions",
+
+    "terms-and-conditions": "submitted-form",
+
+
+  };
+
+
+
+const sellerCompanyForm = ['seller-company-property-address', 'seller-company-information', 'seller-company-type-llc-multi-member-tax-id','seller-company-operating-agreement-upload','seller-company-type-llc-manager', 'seller-company-type-llc-single-us-tax-id', 'seller-company-type-llc-single-non-us-tax-id', 'seller-company-attorney-representation-details','seller-company-realtor-information-details','terms-and-conditions','seller-company-type-corporation-tax-id','seller-company-type-corporation-president','seller-company-type-corporation-vice-president','seller-company-owners'];
+
+const sellerIndividualForm = ['seller-individual-property-address','seller-individual-transaction-type', 'seller-individual-property-use', 'seller-individual-hoa-information-details', 'seller-individual-lease-contract','seller-individual-sellers', 'seller-individual-mortgage-information','seller-individual-attorney-representation-details','seller-individual-realtor-information-details' ]
+
+
+const buyerCompanyForm = ['buyer-company-property-address', 'buyer-company-information', 'buyer-company-type-llc-multi-member-tax-id', 'buyer-company-operating-agreement-upload', 'buyer-company-type-llc-manager', 'buyer-company-type-llc-single-us-tax-id', 'buyer-company-type-llc-single-non-us-tax-id', 'buyer-company-attorney-representation-details', 'buyer-company-realtor-information-details', 'terms-and-conditions', 'buyer-company-type-corporation-tax-id', 'buyer-company-type-corporation-president', 'buyer-company-type-corporation-vice-president', 'buyer-company-owners'];
+
+
+const buyerIndividualForm = ['buyer-individual-property-address', 'buyer-individual-transaction-type', 'buyer-individual-property-use', , 'buyer-individual-buyers', 'buyer-individual-mortgage-information', 'buyer-individual-attorney-representation-details', 'buyer-individual-realtor-information-details']
+
+let inputOnlyViews = [...sellerCompanyForm, ...sellerIndividualForm, ...buyerCompanyForm, ...buyerIndividualForm]
+
+const nonConditionalViews = ['seller-company-property-type','seller-individual-property-type', 'seller-company-property-use','seller-individual-transaction-type','buyer-company-property-type','buyer-company-transaction-type', 'buyer-individual-transaction-type','buyer-individual-property-type','buyer-individual-property-use','buyer-individual-title-information' ];
 
 
 
@@ -10,18 +95,26 @@ let currentView = "view1"; // Initial view name
 
 
 // Load the viewMapping.js file which contains the dictionary
-$.getScript("viewMapping.js");
+$.getScript("viewMappingBuyerCompany.js");
+
 $.getScript("viewMappingBackward.js");
 
 $(document).ready(function() {
     let selectedOption = null;
     let currentView = "view1"; // You can set this dynamically if needed
+    let viewMap = {}
+    $.when(
+        $.getScript("viewMapping.js"),
 
+    ).done(function() {
+        viewMap = viewMapping
+    })
+
+    let formType = ""
     // Load the initial view (view1.html)
     $('#form-container').load(currentView + '.html', function() {
         attachOptionClickEvents();
     });
-
     // Function to attach event listeners for the option click
     function attachOptionClickEvents() {
         $(".option").click(function() {
@@ -52,7 +145,6 @@ $(document).ready(function() {
         // Previous button functionality
         $("#previous-btn").click(function() {
 
-            console.log(viewMappingBackward[currentView])
             let key;
 
             key = currentView
@@ -74,11 +166,20 @@ $(document).ready(function() {
 
     // Function to move to the next view
     function moveToNextView() {
+        console.log(viewMap);
+
         let key;
+        if(currentView==="view1" && selectedOption==="buyer-company") {
+            console.log("we're going to replace viewMap")
+            formType = "buyer-company";
+            viewMap = viewMappingBuyerCompany
+        }
 
         key = currentView + (selectedOption? ("-" + selectedOption): "")
         if(nonConditionalViews.includes(currentView)) key = currentView
-        const nextView = viewMapping[key];
+        console.log(key, viewMap[key])
+
+        const nextView = viewMap[key];
         if (nextView) {
             $('#form-container').load(nextView+".html", function() {
                 currentView = nextView.split('.')[0]; // Update current view

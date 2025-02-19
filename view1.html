@@ -20,16 +20,16 @@
   <div class="animate__animated animate__bounceIn">
 
     <div class="video">
-      <video style="border-radius:10px; width:100%;min-width:400px; height: 400px; object-fit: cover; object-position: top;" width="100%"  class="responsive-video" id="myVideo" muted controls>
-        <source src="./My Video.mp4" type="video/mp4">
-        <source src="./My Video.mp4" type="video/webm">
+      <video style="width:100%; min-width:400px; height: auto; aspect-ratio: 1/1; object-fit: cover; object-position: top;" width="100%"  class="responsive-video" id="ELOWENNA-College-girl-lexi--get-started" muted controls>
+        <source src="./georgia-view1.mp4" type="video/mp4">
+        <source src="./georgia-view1.mp4" type="video/webm">
         Your browser does not support the video tag.
       </video>
     </div>
 
     <div class="view-container">
-      <h2>Operation Type</h2>
-      <p>Please choose the operation type.</p>
+      <h2 class="d-none d-sm-block">Operation Type</h2>
+      <p class="d-none d-sm-block">Please choose the operation type.</p>
 
       <div class="options">
         <div class="option" data-value="buyer-company">
@@ -96,7 +96,7 @@
 
       // Unmute the video when the button is clicked
       $('#unmuteButton').click(function() {
-        var avatarAudio = $('#myVideo')[0]; // Get the video element
+        var avatarAudio = $('#ELOWENNA-College-girl-lexi--get-started')[0]; // Get the video element
         avatarAudio.muted = false;  // Unmute the video
         avatarAudio.play();         // Play the video
       });

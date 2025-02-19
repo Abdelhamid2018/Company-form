@@ -1,0 +1,164 @@
+<!-- Form Content -->
+<div class="view-container">
+  <h2>Buyer/Borrower Information</h2>
+  <p>Please select the number of Buyers/Borrowers, and fill out the information below.</p>
+  <hr/>
+
+  <!-- Select Number of Sellers -->
+  <div class="mb-3">
+      <label for="numSellers" class="form-label" style="font-weight: bold;">How Many Buyers/Borrowers?</label>
+      <select class="form-select" id="numSellers" onchange="showSellerSections()">
+          <option value="" disabled selected>Select Number of Buyers/Borrowers</option>
+          <option value="1">1 Buyers/Borrowers</option>
+          <option value="2">2 Buyers/Borrowers</option>
+          <option value="3">3 Buyers/Borrowers</option>
+      </select>
+  </div>
+
+  <!-- Seller Sections (Hidden by Default) -->
+  <div id="sellerSections"></div>
+
+  <!-- Buttons -->
+  <div class="button-container">
+      <button class="btn btn-primary" id="previous-btn">
+          <i class="bi bi-arrow-left"></i> Previous
+      </button>
+      <button class="btn btn-primary" id="next-btn">
+          Next <i class="bi bi-arrow-right"></i>
+      </button>
+  </div>
+</div>
+
+<script>
+function showSellerSections() {
+  var numSellers = document.getElementById('numSellers').value;
+  var sellerSections = document.getElementById('sellerSections');
+  sellerSections.innerHTML = ''; // Clear previous sections
+
+  for (let i = 1; i <= numSellers; i++) {
+      sellerSections.innerHTML += `
+          <div class="seller-container">
+              <h3>Buyer/Borrower ${i}</h3>
+
+              <!-- Seller's Name Inputs -->
+              <div class="mb-3">
+                  <label for="seller${i}FirstName" class="form-label" style="font-weight: bold;">First Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="seller${i}FirstName" placeholder="Enter First Name">
+              </div>
+              <div class="mb-3">
+                  <label for="seller${i}MiddleName" class="form-label" style="font-weight: bold;">Middle Name</label>
+                  <input type="text" class="form-control" id="seller${i}MiddleName" placeholder="Enter Middle Name (Optional)">
+              </div>
+              <div class="mb-3">
+                  <label for="seller${i}LastName" class="form-label" style="font-weight: bold;">Last Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="seller${i}LastName" placeholder="Enter Last Name">
+              </div>
+
+              <!-- Phone and Email Inputs -->
+              <div class="mb-3">
+                  <label for="seller${i}Phone" class="form-label" style="font-weight: bold;">Phone Number <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="seller${i}Phone" placeholder="Enter Phone Number">
+              </div>
+              <div class="mb-3">
+                  <label for="seller${i}Email" class="form-label" style="font-weight: bold;">Email <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" id="seller${i}Email" placeholder="Enter Email">
+              </div>
+
+              <!-- Marital Status -->
+              <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Marital Status <span class="text-danger">*</span></label>
+                  <div>
+                      <input type="radio" id="single${i}" name="maritalStatus${i}" value="Single" onclick="hideSpouseSection(${i})">
+                      <label for="single${i}">Single</label>
+                      <input type="radio" id="married${i}" name="maritalStatus${i}" value="Married" onclick="showSpouseSection(${i})">
+                      <label for="married${i}">Married</label>
+                  </div>
+              </div>
+
+              <!-- Spouse Info (Hidden by Default) -->
+              <div id="spouseSection${i}" style="display: none;">
+                  <h4>Spouse Information</h4>
+                  <div class="mb-3">
+                      <label for="spouse${i}FirstName" class="form-label" style="font-weight: bold;">Spouse First Name</label>
+                      <input type="text" class="form-control" id="spouse${i}FirstName" placeholder="Enter Spouse First Name">
+                  </div>
+                  <div class="mb-3">
+                      <label for="spouse${i}MiddleName" class="form-label" style="font-weight: bold;">Spouse Middle Name</label>
+                      <input type="text" class="form-control" id="spouse${i}MiddleName" placeholder="Enter Spouse Middle Name (Optional)">
+                  </div>
+                  <div class="mb-3">
+                      <label for="spouse${i}LastName" class="form-label" style="font-weight: bold;">Spouse Last Name</label>
+                      <input type="text" class="form-control" id="spouse${i}LastName" placeholder="Enter Spouse Last Name">
+                  </div>
+                  <div class="mb-3">
+                      <label for="spouse${i}Phone" class="form-label" style="font-weight: bold;">Spouse Phone Number</label>
+                      <input type="text" class="form-control" id="spouse${i}Phone" placeholder="Enter Spouse Phone Number">
+                  </div>
+                  <div class="mb-3">
+                      <label for="spouse${i}Email" class="form-label" style="font-weight: bold;">Spouse Email</label>
+                      <input type="email" class="form-control" id="spouse${i}Email" placeholder="Enter Spouse Email">
+                  </div>
+              </div>
+
+              <!-- Citizenship Status -->
+              <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Citizenship Status <span class="text-danger">*</span></label>
+                  <div>
+                      <input type="radio" id="citizen${i}" name="citizenshipStatus${i}" value="US Citizen/Resident" onclick="showSSNSection(${i})">
+                      <label for="citizen${i}">US Citizen/Resident</label>
+                      <input type="radio" id="resident${i}" name="citizenshipStatus${i}" value="Non-US Citizen/Resident" onclick="showITINSection(${i})">
+                      <label for="resident${i}">Non-US Citizen/Resident</label>
+                  </div>
+              </div>
+
+              <!-- SSN Input (Hidden by Default) -->
+              <div id="ssnSection${i}" style="display: none;">
+                  <div class="mb-3">
+                      <label for="ssn${i}" class="form-label" style="font-weight: bold;">Social Security Number (SSN)</label>
+                      <input type="text" class="form-control" id="ssn${i}" placeholder="Enter SSN">
+                  </div>
+              </div>
+
+              <!-- ITIN Input (Hidden by Default) -->
+              <div id="itinSection${i}" style="display: none;">
+                  <div class="mb-3">
+                      <label for="itin${i}" class="form-label" style="font-weight: bold;">ITIN</label>
+                      <input type="text" class="form-control" id="itin${i}" placeholder="Enter ITIN">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="noITIN${i}" onclick="toggleITINInput(${i})">
+                          <label class="form-check-label" for="noITIN${i}">
+                              I don't have an ITIN
+                          </label>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <hr/>
+      `;
+  }
+}
+
+function showSpouseSection(sellerIndex) {
+  document.getElementById(`spouseSection${sellerIndex}`).style.display = 'block';
+}
+
+function hideSpouseSection(sellerIndex) {
+  document.getElementById(`spouseSection${sellerIndex}`).style.display = 'none';
+}
+
+function showSSNSection(sellerIndex) {
+  document.getElementById(`ssnSection${sellerIndex}`).style.display = 'block';
+  document.getElementById(`itinSection${sellerIndex}`).style.display = 'none';
+}
+
+function showITINSection(sellerIndex) {
+  document.getElementById(`itinSection${sellerIndex}`).style.display = 'block';
+  document.getElementById(`ssnSection${sellerIndex}`).style.display = 'none';
+}
+
+function toggleITINInput(sellerIndex) {
+  const itinInput = document.getElementById(`itin${sellerIndex}`);
+  const noITINCheckbox = document.getElementById(`noITIN${sellerIndex}`);
+  itinInput.style.display = noITINCheckbox.checked ? 'none' : 'block';
+}
+</script>

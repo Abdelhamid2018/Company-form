@@ -1,0 +1,26 @@
+---------
+#view 1
+
+Hey, I’m Anna! Let’s get started with your info.
+First up:
+
+Are you the buyer or seller?
+Are you a company or individual?
+Pick one, and we’ll go from there!
+---------
+#property address
+
+Can you provide the full property address? Please include the street, city, state, and ZIP code.
+---------
+#transaction type
+Next up, we need to know the transaction type. Is it purchase cash, purchase with loan, or refinance?
+
+---------
+#company information
+Please enter the company name and the authorized person’s name.
+
+
+
+
+
+
